@@ -5,8 +5,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
-const sauce = require('./models/sauce');
-const sauceRoutes = require('./routes/sauce');
+const sauces = require('./models/sauces');
+const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 const path = require('path');
 const helmet = require('helmet');
@@ -27,9 +27,8 @@ mongoose.connect('mongodb+srv://String:q41UvMt3IwSKB1cZ@cluster0.idvs3aw.mongodb
 
   app.use(bodyParser.json());
 
-  app.use('/api/sauces', sauceRoutes);
+  app.use('/api/sauces', saucesRoutes);
   
-  app.use('/api/sauce', sauceRoutes);
   app.use('/api/auth', userRoutes);
   app.use('/images', express.static(path.join(__dirname, 'images')));
 

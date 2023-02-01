@@ -4,6 +4,7 @@ const MongooseErrors = require('mongoose-errors')
 
 const sauceSchema = mongoose.Schema({
 
+  userId: { type: String, required: true },
   name: { type: String, required: true },
   manufacturer: { type: String, required: true },
   description: { type: String, required: true },
