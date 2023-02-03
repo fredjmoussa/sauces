@@ -5,7 +5,7 @@ module.exports = (req, res, next) => { //exporte une fonction anonyme qui sera u
         next(); // appelle la prochaine fonction middleware de l'application Express.
     }
     else {
-     
+     // Dans le cas contraire, la fonction envoie une réponse HTTP avec un statut 400 (erreur de la demande) et un message JSON qui décrit les règles de validation du mot de passe.
         res.status(400).json({ message : 'Le mot de passe doit contenir au minimum 8 caractères, maximum 100 caractères, avec au minimum une majuscule, une minuscule, deux chiffres et sans espaces '}); //ligne est exécutée si la validation du mot de passe échoue. Elle envoie une réponse HTTP avec un statut 400 (erreur de la demande) et un message json qui décrit les règles de validation du mot de passe.
     }
 }

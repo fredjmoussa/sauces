@@ -1,21 +1,21 @@
 const passwordValidator = require('password-validator');
 
-// Create a schema
+// Crée un schema
 const passwordSchema = new passwordValidator();
 
 passwordSchema
-.is().min(8)                                    // Minimum length 8
-.is().max(100)                                  // Maximum length 100
-.has().uppercase()                              // Must have uppercase letters
-.has().lowercase()                              // Must have lowercase letters
-.has().digits(2)                                // Must have at least 2 digits
-.has().not().spaces()                           // Should not have spaces
-.is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist these values
+.is().min(8)                                    // Minimum  8
+.is().max(100)                                  // Maximum  100
+.has().uppercase()                              // Contient des majucules
+.has().lowercase()                              // Contient des minuscules
+.has().digits(2)                                // Contient au moins deux chiffres
+.has().not().spaces()                           // Ne contient pas d'espace
+.is().not().oneOf(['Passw0rd', 'Password123']); // Blacklist ces mdp
 
-// Validate against a password string
+// Valide contre un mdp string
 console.log(passwordSchema.validate('validPASS123'));
-// => true
+// => Vrai
 console.log(passwordSchema.validate('invalidPASS'));
-// => false
-
+// => Faux
+// le schéma passwordSchema est exporté pour être utilisé dans d'autres parties de l'application.
 module.exports = passwordSchema;
