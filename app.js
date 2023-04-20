@@ -11,7 +11,8 @@ const path = require('path'); //Le package path est utilisé pour travailler ave
 const helmet = require('helmet'); //Le package helmet est utilisé pour renforcer la sécurité de l'application en configurant différents en-têtes HTTP.
 const rateLimit = require('express-rate-limit') //Le package express-rate-limit est utilisé pour limiter le nombre de requêtes d'un même client en utilisant un fenêtre de temps donnée.
 //La méthode mongoose.connect est appelée pour établir une connexion à la base de données MongoDB.
-mongoose.connect('mongodb+srv://String:q41UvMt3IwSKB1cZ@cluster0.idvs3aw.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect("mongodb+srv://fredjmoussa:test@cluster0.idvs3aw.mongodb.net/?retryWrites=true&w=majority",
+//mongoose.connect("mongodb+srv://" + process.env.MONGO_USERNAME + ":" + process.env.MONGO_PASSWORD + "@cluster0.idvs3aw.mongodb.net/?retryWrites=true&w=majority",
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

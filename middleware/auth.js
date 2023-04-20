@@ -6,7 +6,8 @@ module.exports = (req, res, next) => {  //exporte une fonction anonyme qui sera 
 
    try {
        const token = req.headers.authorization.split(' ')[1]; //récupère le jeton JWT de l'en-tête d'autorisation de la requête. Il utilise la méthode split pour séparer l'en-tête d'autorisation en deux parties, séparées par un espace, et récupère la deuxième partie, qui est le jeton JWT.
-       const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET'); //utilise la méthode verify de la bibliothèque jsonwebtoken pour vérifier la validité du jeton JWT. Le jeton et la clé secrète 'RANDOM_TOKEN_SECRET' sont passés en entrée. Si le jeton est valide, la méthode renvoie les données décodées contenues dans le jeton.
+       const decodedToken = jwt.verify(token, "RANDOM_TOKEN_SECRET"); //utilise la méthode verify de la bibliothèque jsonwebtoken pour vérifier la validité du jeton JWT. Le jeton et la clé secrète 'RANDOM_TOKEN_SECRET' sont passés en entrée. Si le jeton est valide, la méthode renvoie les données décodées contenues dans le jeton.
+       //const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET);
        const userId = decodedToken.userId; // récupère l'identifiant de l'utilisateur contenu dans les données décodées du jeton JWT.
        req.auth = {
            userId: userId

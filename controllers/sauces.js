@@ -96,11 +96,14 @@ exports.getAllSauce = (req, res, next) => { //récupère toutes les sauces à pa
 //permet à un utilisateur de donner un "j'aime" ou un "je n'aime pas" à une sauce.
 exports.likeOrDislike = (req, res, next) => { // Elle effectue des mises à jour en fonction du corps de la requête req.
   if (req.body.like === 1) { // Si req.body.like est égal à 1, la méthode updateOne est utilisée pour incrémenter le nombre de "j'aime" de 1 et pour ajouter l'identifiant de l'utilisateur dans la liste usersLiked.
-      Sauce.updateOne({ _id: req.params.id }, { $inc: { likes: req.body.like++ }, $push: { usersLiked: req.body.userId } })
+    //if (req.body.like === 1 && sauce.usersLiked.includes(req.body.userId)) {
+    //console.log(usersLiked.includes(req.body.userId));  
+    Sauce.updateOne({ _id: req.params.id }, { $inc: { likes: req.body.like++ }, $push: { usersLiked: req.body.userId } })
           .then(() => res.status(200).json({ message: 'Like' }))
           .catch(error => res.status(400).json({ error }))
   } else if (req.body.like === -1) { //Si req.body.like est égal à -1, la méthode updateOne est utilisée pour incrémenter le nombre de "je n'aime pas" de 1 et pour ajouter l'identifiant de l'utilisateur dans la liste usersDisliked. 
-      Sauce.updateOne({ _id: req.params.id }, { $inc: { dislikes: (req.body.like++) * -1 }, $push: { usersDisliked: req.body.userId } })
+    //  } else if (req.body.like === -1 && sauce.usersLiked.includes(req.body.userId)) {
+    Sauce.updateOne({ _id: req.params.id }, { $inc: { dislikes: (req.body.like++) * -1 }, $push: { usersDisliked: req.body.userId } })
           .then(() => res.status(200).json({ message: 'Dislike' }))
           .catch(error => res.status(400).json({ error }))
   } else { //Si req.body.like est égal à 0, la méthode findOne est utilisée pour trouver la sauce correspondante, puis il vérifie si l'utilisateur a donné un "j'aime" ou un "je n'aime pas"
